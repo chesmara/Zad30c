@@ -8,15 +8,6 @@
          android:title="@string/fragment_detal_action_create"
           android:icon="@android:drawable/ic_menu_add"
             app:showAsAction="ifRoom" />
-    <item android:id="@+id/priprema_update_actor"
-        android:title="@string/fragment_detal_action_update"
-        android:icon="@android:drawable/ic_menu_add"
-        app:showAsAction="ifRoom" />
-    <item android:id="@+id/priprema_delete_actor"
-        android:title="@string/fragment_detal_action_delete"
-        android:icon="@android:drawable/ic_menu_add"
-        app:showAsAction="ifRoom" />
-
 
     <item android:id="@+id/priprema_preferences"
             android:title="Preferences"

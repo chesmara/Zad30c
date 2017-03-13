@@ -2,7 +2,7 @@
     <string name="app_name">Zad30c</string>
 
     <string name="fragment_detail_button_buy">Buy</string>
-    <string name="fragment_detal_action_create">Uneti podaci</string>
+    <string name="fragment_detal_action_create">Unos glumca</string>
     <string name="fragment_detal_action_update">Promenjeni podaci</string>
     <string name="fragment_detal_action_delete">Izbrisani podaci</string>
 

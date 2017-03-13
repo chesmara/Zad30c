@@ -2,6 +2,7 @@ package com.example.sninkovic_ns.zad30c.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.example.sninkovic_ns.zad30c.R;
 import com.example.sninkovic_ns.zad30c.db.DatabaseHelper;
 import com.example.sninkovic_ns.zad30c.db.model.Glumac;
+import com.example.sninkovic_ns.zad30c.dialogs.AboutDialog;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.sql.SQLException;
@@ -34,6 +36,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
 
         final ListView listView = (ListView) findViewById(R.id.glumci_list);
@@ -114,7 +122,25 @@ public class MainActivity extends AppCompatActivity {
 
                 });
 
+                Button cancel = (Button) dialog.findViewById(R.id.add_actor_cancel);
+                cancel.setOnClickListener(new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+
                 dialog.show();
+                break;
+
+            case(R.id.priprema_about):
+
+                AlertDialog alertDialog = new AboutDialog(this).prepareDialog();
+                            alertDialog.show();
+
+
+
 
         }
 
