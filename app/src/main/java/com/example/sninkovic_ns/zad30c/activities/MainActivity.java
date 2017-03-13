@@ -22,6 +22,7 @@ import com.example.sninkovic_ns.zad30c.R;
 import com.example.sninkovic_ns.zad30c.db.DatabaseHelper;
 import com.example.sninkovic_ns.zad30c.db.model.Glumac;
 import com.example.sninkovic_ns.zad30c.dialogs.AboutDialog;
+import com.example.sninkovic_ns.zad30c.preferences.Preferences;
 import com.j256.ormlite.android.apptools.OpenHelperManager;
 
 import java.sql.SQLException;
@@ -31,6 +32,9 @@ public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
     public static String ACTOR_KEY = "ACTOR_KEY";
+    public static String NOTIF_TOAST = "notif_toast";
+    public static String NOTIF_STATUS = "notif_statis";
+    public static String NOTIF_CHE= "notif_che";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -101,17 +105,8 @@ public class MainActivity extends AppCompatActivity {
 
 
                                try {
-
-                                        Toast.makeText(getBaseContext(), "Pre helpera", Toast.LENGTH_SHORT).show();
-
                                    getDatabaseHelper().getmGlumacDaoDao().create(g);
-
-                                        Toast.makeText(getBaseContext(), "Posle helpera", Toast.LENGTH_SHORT).show();
-                                   refresh();
-
-                                        Toast.makeText(getBaseContext(), "Posle refresha", Toast.LENGTH_SHORT).show();
-
-
+                                        refresh();
 
                                } catch (SQLException e) {
                                    e.printStackTrace();
@@ -138,10 +133,12 @@ public class MainActivity extends AppCompatActivity {
 
                 AlertDialog alertDialog = new AboutDialog(this).prepareDialog();
                             alertDialog.show();
+                    break;
 
-
-
-
+            case(R.id.priprema_preferences):
+                Intent intent=new Intent(MainActivity.this, Preferences.class);
+                startActivity(intent);
+                    break;
         }
 
         refresh();
