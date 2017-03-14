@@ -41,17 +41,17 @@ public class SecondActivity extends AppCompatActivity {
         int key = getIntent().getExtras().getInt(MainActivity.ACTOR_KEY);
 
         try {
-            g = getDatabaseHelper().getmGlumacDaoDao().queryForId(key);
+            g = getDatabaseHelper().getmGlumacDao().queryForId(key);
 
             name=(EditText) findViewById(R.id.actor_name);
             bio=(EditText) findViewById(R.id.actor_biography);
             birth=(EditText) findViewById(R.id.actor_birth);
-            //rating=(RatingBar) findViewById(R.id.actor_rating);
+            rating=(RatingBar) findViewById(R.id.actor_rating);
 
             name.setText(g.getmName());
             bio.setText(g.getmBiography());
             birth.setText(g.getmBirth());
-            //rating.setRating(g.getmScore());
+            rating.setRating(g.getmScore());
 
         } catch (SQLException e) {
             e.printStackTrace();

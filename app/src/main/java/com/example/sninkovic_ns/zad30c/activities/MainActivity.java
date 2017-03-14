@@ -2,6 +2,9 @@ package com.example.sninkovic_ns.zad30c.activities;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.Preference;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -31,6 +34,8 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper databaseHelper;
+    private SharedPreferences prefs;
+
     public static String ACTOR_KEY = "ACTOR_KEY";
     public static String NOTIF_TOAST = "notif_toast";
     public static String NOTIF_STATUS = "notif_statis";
@@ -47,11 +52,12 @@ public class MainActivity extends AppCompatActivity {
             setSupportActionBar(toolbar);
         }
 
+        prefs= PreferenceManager.getDefaultSharedPreferences(this);
 
         final ListView listView = (ListView) findViewById(R.id.glumci_list);
 
         try {
-            List<Glumac> list = getDatabaseHelper().getmGlumacDaoDao().queryForAll();
+            List<Glumac> list = getDatabaseHelper().getmGlumacDao().queryForAll();
 
             ListAdapter adapter = new ArrayAdapter<>(MainActivity.this, R.layout.list_item, list);
             listView.setAdapter(adapter);
@@ -105,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
 
 
                                try {
-                                   getDatabaseHelper().getmGlumacDaoDao().create(g);
+                                   getDatabaseHelper().getmGlumacDao().create(g);
                                         refresh();
 
                                } catch (SQLException e) {
@@ -165,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 try {
                     adapter.clear();
 
-                    List<Glumac> list = getDatabaseHelper().getmGlumacDaoDao().queryForAll();
+                    List<Glumac> list = getDatabaseHelper().getmGlumacDao().queryForAll();
 
                     adapter.addAll(list);
 

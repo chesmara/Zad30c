@@ -14,29 +14,29 @@ public class Glumac {
 
     public static final String TABLE_NAME_USERS = "actor";
     public static final String FIELD_NAME_ID     = "id";
-    public static final String TABLE_MOVIE_NAME = "name";
-    public static final String TABLE_MOVIE_BIOGRAPHY = "biography";
-    public static final String TABLE_MOVIE_SCORE = "score";
-    public static final String TABLE_MOVIE_BIRTH = "birth";
-    public static final String TABLE_MOVIE_MOVIES = "movies";
+    public static final String TABLE_GLUMAC_NAME = "name";
+    public static final String TABLE_GLUMAC_BIOGRAPHY = "biography";
+    public static final String TABLE_GLUMAC_SCORE = "score";
+    public static final String TABLE_GLUMAC_BIRTH = "birth";
+    public static final String TABLE_GLUMAC_FILMOVI = "filmovi";
 
     @DatabaseField(columnName = FIELD_NAME_ID, generatedId = true)
     private int mId;
 
-    @DatabaseField(columnName = TABLE_MOVIE_NAME)
+    @DatabaseField(columnName = TABLE_GLUMAC_NAME)
     private String mName;
 
-    @DatabaseField(columnName = TABLE_MOVIE_BIOGRAPHY)
+    @DatabaseField(columnName = TABLE_GLUMAC_BIOGRAPHY)
     private String mBiography;
 
-    @DatabaseField(columnName = TABLE_MOVIE_SCORE)
+    @DatabaseField(columnName = TABLE_GLUMAC_SCORE)
     private Float mScore;
 
-    @DatabaseField(columnName = TABLE_MOVIE_BIRTH)
+    @DatabaseField(columnName = TABLE_GLUMAC_BIRTH)
     private String mBirth;
 
- //   @ForeignCollectionField(columnName = Glumac.TABLE_MOVIE_MOVIES, eager = true)
-   // private ForeignCollection<Movie> movies;
+  @ForeignCollectionField(columnName = Glumac.TABLE_GLUMAC_FILMOVI, eager = true)
+    private ForeignCollection<Filmovi> filmovi;
 
     public Glumac() {
     }
@@ -56,14 +56,14 @@ public class Glumac {
         this.mName = mName;
     }
 
-   // public ForeignCollection<Movie> getMovies() {
-    //    return movies;
-   // }
-
-  /*  public void setMovies(ForeignCollection<Movie> movies) {
-        this.movies = movies;
+    public ForeignCollection<Filmovi> getFilmovi() {
+        return filmovi;
     }
-*/
+
+    public void setFilmovi(ForeignCollection<Filmovi> filmovi) {
+        this.filmovi = filmovi;
+    }
+
     public String getmBiography() {
         return mBiography;
     }
