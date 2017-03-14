@@ -35,7 +35,11 @@ public class SecondActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_second);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
+        if(toolbar != null) {
+            setSupportActionBar(toolbar);
+        }
 
 
         int key = getIntent().getExtras().getInt(MainActivity.ACTOR_KEY);
@@ -46,12 +50,12 @@ public class SecondActivity extends AppCompatActivity {
             name=(EditText) findViewById(R.id.actor_name);
             bio=(EditText) findViewById(R.id.actor_biography);
             birth=(EditText) findViewById(R.id.actor_birth);
-            rating=(RatingBar) findViewById(R.id.actor_rating);
+            //rating=(RatingBar) findViewById(R.id.actor_rating);
 
             name.setText(g.getmName());
             bio.setText(g.getmBiography());
             birth.setText(g.getmBirth());
-            rating.setRating(g.getmScore());
+           //rating.setRating(g.getmScore());
 
         } catch (SQLException e) {
             e.printStackTrace();
