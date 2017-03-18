@@ -1,13 +1,18 @@
 package com.example.sninkovic_ns.zad30c.activities;
 
 import android.app.Dialog;
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.preference.Preference;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.NotificationCompat;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -112,6 +117,18 @@ public class MainActivity extends AppCompatActivity {
 
                                try {
                                    getDatabaseHelper().getmGlumacDao().create(g);
+
+                                   boolean toast=prefs.getBoolean(NOTIF_TOAST, false);
+                                   boolean status=prefs.getBoolean(NOTIF_STATUS, false);
+
+                                   if(toast){
+                                       Toast.makeText(MainActivity.this, "Dodat novi glumac", Toast.LENGTH_SHORT).show();
+                                   }
+
+                                   if(status){
+                                       showStatusMesage("Dodat novi glumac");
+                                   }
+
                                         refresh();
 
                                } catch (SQLException e) {
@@ -188,5 +205,18 @@ public class MainActivity extends AppCompatActivity {
             databaseHelper = OpenHelperManager.getHelper(this, DatabaseHelper.class);
         }
         return databaseHelper;
+    }
+
+    private void showStatusMesage(String message){
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(this);
+        mBuilder.setSmallIcon(R.drawable.ic_launcher);
+        mBuilder.setContentTitle("Pripremni test");
+        mBuilder.setContentText(message);
+
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(),R.drawable.ic_action_create);
+
+        mBuilder.setLargeIcon(bmp);
+        mNotificationManager.notify(1,mBuilder.build());
     }
 }
